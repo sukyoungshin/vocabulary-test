@@ -1,0 +1,23 @@
+/** (2023.04.19)  */
+export const vocabularies = [
+  { vocabulary: 'widely', meaning: 'adv. 광범위하게, 널리' },
+  { vocabulary: 'delegation', meaning: 'n.(집합적) 대표단, 위임' },
+  { vocabulary: 'conclusive', meaning: 'adj. 결정적인, 단호한' },
+  { vocabulary: 'extremely', meaning: 'adv. 극단적으로, 몹시' },
+  { vocabulary: 'discontinue', meaning: 'v. 중단하다, 중지되다' },
+  { vocabulary: 'employee', meaning: 'n. 피고용인, 종업원' },
+  { vocabulary: 'dependent', meaning: 'adj. 달려있는, 의존적인' },
+  { vocabulary: 'estimate', meaning: 'n. 평가, 견적(서), v. 견적을 내다, 추정하다' },
+  { vocabulary: 'enclosed', meaning: 'adj. 동봉된, 둘러쌓인' },
+  { vocabulary: 'run', meaning: 'v. 경영하다' },
+  { vocabulary: 'failure', meaning: 'n. 실패, 고장, 불이행' },
+  { vocabulary: 'recruit', meaning: 'v. (신입 사원 등을) 모집하다, n. 신입사원, 신 회원' },
+  { vocabulary: 'grant', meaning: 'n. 보조금, 허가, 수여, n.수여하다, 주다' },
+  { vocabulary: 'due', meaning: 'adj.만기가 된, 지불기일이 된' },
+  { vocabulary: 'screen', meaning: 'v. 심사하다, 선발하다, n. 화면, 칸막이' },
+  { vocabulary: 'leading', meaning: 'adj. 주요한, 선도하는, 일류의' },
+  { vocabulary: 'refund', meaning: 'n.환불(금), v.환불하다' },
+  { vocabulary: 'location', meaning: 'n.장소, 위치' },
+  { vocabulary: 'face', meaning: 'v.(문제 등에) 직면하다, n.표면, 외관' },
+  { vocabulary: 'divide', meaning: 'v. 나누다, 분류하다, 나누어지다, n.분배, 나누기' },
+]

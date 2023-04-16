@@ -1,0 +1,122 @@
+:root {
+  /* color */
+  --grey: rgba(0,0,0,0.1);
+  --light-grey: rgba(0,0,0,0.05);
+  --black: rgba(0,0,0,0.7);
+
+  /* size */
+  --width: 60%;
+  --height: 40px;
+
+  /* font-weight */
+  --bolder: 600;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.test-title {
+  width: var(--width);
+}
+.test-title h1 {
+  text-align: center;
+}
+
+.test-wrapper {
+  width: var(--width);
+  border: 1px solid var(--black);}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+
+  border-right: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--light-grey);
+}
+.table-row:nth-child(1) {
+  font-weight: var(--bolder);
+  background-color: var(--grey);
+
+  border-bottom: 1px solid var(--black);
+}
+.table-cell {
+  width: 100%;
+  height: 100%;
+  line-height: var(--height);
+  text-align: center;
+}
+
+/* FIXME: 프린트 설정 변경 */
+@media print {
+  :root {
+    /* color */
+    --grey: rgba(0,0,0,0.1);
+    --light-grey: rgba(0,0,0,0.05);
+    --black: rgba(0,0,0,0.7);
+  
+    /* size */
+    --width: 50px;
+    --height: 40px;
+  }
+  @page {
+    size: 210mm 297mm; /* A4 */
+    margin-top: 18mm;
+    margin-bottom: 18mm;
+    margin-left: 4mm;
+    margin-right: 4mm;
+  }
+  * {
+    margin: 0; 
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact; /* 크롬 배경화면 프린트 */
+  }
+  body {
+    /* IE4-8 and 9 (deprecated). */
+    filter: Gray();
+    /* SVG version for IE10, Chrome 17, FF3.5, 
+       Safari 5.2 and Opera 11.6 */
+    filter: url('#grayscale'); 
+    /* CSS3 filter, at the moment Webkit only. Prefix it for
+       future implementations */
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%); /* future-proof */
+    page-break-before: avoid; /* 언제나 페이지를 분할 */
+    page-break-after: auto;
+  }
+  .test-title {
+    width: 60% !important;
+  }
+  .test-wrapper {
+    width: 60% !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+
+    display: table !important;
+  }
+  .table-cell {
+    display: table-cell;
+    height: var(--height);
+  }
+  .table-cell:nth-child(1),
+  .table-cell:nth-child(4n) {
+    width: var(--width);
+  }
+  .table-cell:nth-child(2),
+  .table-cell:nth-child(3){
+    width: calc(100% - 50px);
+  }
+  .table-row {
+    display: table-row;
+  }
+
+  footer {
+    display: none;
+  }
+}
