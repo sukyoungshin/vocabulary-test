@@ -1,122 +1,120 @@
-:root {
-  /* color */
-  --grey: rgba(0,0,0,0.1);
-  --light-grey: rgba(0,0,0,0.05);
-  --black: rgba(0,0,0,0.7);
-
-  /* size */
-  --width: 60%;
-  --height: 40px;
-
-  /* font-weight */
-  --bolder: 600;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-}
-
-.test-title {
-  width: var(--width);
-}
-.test-title h1 {
-  text-align: center;
-}
-
-.test-wrapper {
-  width: var(--width);
-  border: 1px solid var(--black);}
-
-.table-row {
-  display: grid;
-  grid-template-columns: 50px 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-
-  border-right: 1px solid var(--light-grey);
-  border-bottom: 1px solid var(--light-grey);
-}
-.table-row:nth-child(1) {
-  font-weight: var(--bolder);
-  background-color: var(--grey);
-
-  border-bottom: 1px solid var(--black);
-}
-.table-cell {
-  width: 100%;
-  height: 100%;
-  line-height: var(--height);
-  text-align: center;
-}
-
-/* FIXME: 프린트 설정 변경 */
-@media print {
+    /* --palette-black-10: rgba(var(--base-black),0.05); */
+@media screen, print {
   :root {
-    /* color */
-    --grey: rgba(0,0,0,0.1);
-    --light-grey: rgba(0,0,0,0.05);
-    --black: rgba(0,0,0,0.7);
+    --base-black: 0, 0%;
+
+    /* color palette */
+    --palette-black-10: var(--base-black),10%;
+    --palette-black-20: var(--base-black),20%;
+    --palette-black-30: var(--base-black),30%;
+    --palette-black-40: var(--base-black),40%;
+    --palette-black-50: var(--base-black),50%;
+    --palette-black-60: var(--base-black),60%;
+    --palette-black-70: var(--base-black),70%;
+    --palette-black-80: var(--base-black),80%;
+    --palette-black-90: var(--base-black),90%;
+
+    /* 다른 불투명도를 지정 */
+    --light: hsla(var(--palette-black-50), 10%);
+    --normal: hsla(var(--palette-black-50), 50%);
+    --primary: hsla(var(--palette-black-10), 100%);
   
     /* size */
-    --width: 50px;
+    --spacing-0: 4px;
+    --spacing-1: 8px;
+    --spacing-2: 16px;
+
+    --full-width: 100%;
     --height: 40px;
+    --minimal-width: 50px;
+    --height-font: 28px;
+  
+    /* font-weight */
+    --bolder: 600;
+
+    /* font-size */
+    --font-normal: 16px;
+    --font-large: 24px;
   }
-  @page {
-    size: 210mm 297mm; /* A4 */
-    margin-top: 18mm;
-    margin-bottom: 18mm;
-    margin-left: 4mm;
-    margin-right: 4mm;
-  }
-  * {
-    margin: 0; 
+
+  /* CSS reset */
+  body, html {
+    margin: 0;
     padding: 0;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact; /* 크롬 배경화면 프린트 */
   }
-  body {
-    /* IE4-8 and 9 (deprecated). */
-    filter: Gray();
-    /* SVG version for IE10, Chrome 17, FF3.5, 
-       Safari 5.2 and Opera 11.6 */
-    filter: url('#grayscale'); 
-    /* CSS3 filter, at the moment Webkit only. Prefix it for
-       future implementations */
-    -webkit-filter: grayscale(100%); 
-    filter: grayscale(100%); /* future-proof */
-    page-break-before: avoid; /* 언제나 페이지를 분할 */
-    page-break-after: auto;
+  p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
   }
+  menu {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+@media screen, print {  
   .test-title {
-    width: 60% !important;
+    width: var(--full-width);
   }
+  .test-title h1 {
+    text-align: center;
+    font-size: var(--font-large);
+  }
+  .test-title p {
+    line-height: var(--height-font);
+    height: var(--height-font);
+    font-size: var(--font-normal);
+  }
+  .test-score {
+    column-count: 2;
+  }
+  
   .test-wrapper {
-    width: 60% !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-
-    display: table !important;
+    margin: var(--spacing-0) 0;
+    width: var(--full-width);
+    border: 1px solid var(--primary);
   }
-  .table-cell {
-    display: table-cell;
-    height: var(--height);
-  }
-  .table-cell:nth-child(1),
-  .table-cell:nth-child(4n) {
-    width: var(--width);
-  }
-  .table-cell:nth-child(2),
-  .table-cell:nth-child(3){
-    width: calc(100% - 50px);
-  }
+  
   .table-row {
-    display: table-row;
+    display: grid;
+    grid-template-columns: var(--minimal-width) 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+  
+    border-bottom: 1px solid var(--light);
+  }
+  .table-row:nth-child(1) {
+    font-weight: var(--bolder);
+    border-bottom: 1px solid var(--primary);
+  } 
+
+  .table-cell,
+  .table-subtitle {
+    line-height: var(--height);
+    text-align: center;
+    font-size: var(--font-normal);
+  }
+  .table-subtitle {
+    color: var(--primary);
+  }
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block;
   }
 
-  footer {
-    display: none;
+  menu {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-2);
+  }
+
+  menu button {
+    padding: var(--spacing-1) var(--spacing-2);
   }
 }
