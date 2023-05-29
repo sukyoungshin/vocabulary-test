@@ -25,9 +25,9 @@
     --spacing-2: 16px;
 
     --full-width: 100%;
-    --height: 40px;
+    --height: 32px;
     --minimal-width: 50px;
-    --height-font: 28px;
+    --height-font: 22px;
   
     /* font-weight */
     --bolder: 600;
@@ -56,11 +56,16 @@
   }
 }
 
-@media screen, print {  
+@media screen, print {
+  .wrapper {
+    margin-inline: auto;
+    width: 1000px;
+  }
   .test-title {
     width: var(--full-width);
   }
   .test-title h1 {
+    margin: var(--spacing-2) 0;
     text-align: center;
     font-size: var(--font-large);
   }
@@ -74,7 +79,7 @@
   }
   
   .test-wrapper {
-    margin: var(--spacing-0) 0;
+    margin: var(--spacing-2) 0;
     width: var(--full-width);
     border: 1px solid var(--primary);
   }
