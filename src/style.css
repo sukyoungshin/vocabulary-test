@@ -125,6 +125,9 @@
 }
 
 @media print {
+  @page {
+    margin: 0 60px;
+  }
   footer {
     display: none;
   }
