@@ -1,4 +1,3 @@
-/** (2023.04.19)  */
 export const vocabularies = [
   { vocabulary: 'widely', meaning: 'adv. 광범위하게, 널리' },
   { vocabulary: 'delegation', meaning: 'n.(집합적) 대표단, 위임' },
