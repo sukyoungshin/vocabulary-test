@@ -123,3 +123,9 @@
     padding: var(--spacing-1) var(--spacing-2);
   }
 }
+
+@media print {
+  footer {
+    display: none;
+  }
+}
