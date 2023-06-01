@@ -35,6 +35,7 @@ const getVocabularyData = (sort?: string) => {
 const updateVocabulary = (sort?: string) => {
   const vocabularyData = getVocabularyData(sort);
   getVocabulary(vocabularyData);
+  handleToggle();
 };
 
 const getDailyVocabularyData = () => {
@@ -69,15 +70,18 @@ const getDescendingVocabularyData = () => {
 const createTitleElement = ($testWrapper: Element) => {
   const $testTitle = document.createElement('div');
   $testTitle.setAttribute('class', 'table-row table-subtitle');
-  const $no = document.createElement('div');
+  const $no = document.createElement('p');
   $no.innerText = "No";
   $testTitle.append($no);
-  const $words = document.createElement('div');
+  const $words = document.createElement('p');
   $words.innerText = "Words";
   $testTitle.append($words);
-  const $meaning = document.createElement('div');
+  const $meaning = document.createElement('p');
   $meaning.innerText = "Meaning";
   $testTitle.append($meaning);
+  const $checkbox = document.createElement('p');
+  $checkbox.innerText = "Done";
+  $testTitle.append($checkbox);
 
   $testWrapper.append($testTitle);
 }
@@ -131,6 +135,10 @@ const getVocabulary = (vocabularies: VocabularyType[]) => {
       $tableRow.append($element);
     }
 
+    const $checkbox = document.createElement("input");
+    $checkbox.setAttribute("type", "checkbox");
+    $tableRow.append($checkbox);
+
     $testWrapper.append($tableRow);
   });
 };
@@ -144,6 +152,23 @@ const createTableCellElement = (key: number | string) => {
 };
 
 /** event */
+const handleToggle = () => {
+  const $tableRow = document.querySelectorAll<Element>(".table-row");
+  const $selected = document.querySelectorAll<Element>("input[type='checkbox']");
+  for (let i = 0; i < $selected.length; i++) {
+    $selected[i].addEventListener('click', () => {
+      const index = i + 1;
+      const isChecked = $tableRow[index].classList.value.includes('done');
+
+      if (isChecked) {
+        $tableRow[index].classList.remove('done');
+      } else {
+        $tableRow[index].classList.add('done');
+      }
+    });
+  }
+};
+
 const handlePrint = () => {
   const { $button } = getHTMLElement();
   if (!$button) return;
