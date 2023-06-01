@@ -1,3 +1,4 @@
+export const vocabulariesTestRange = "범위: Day8 01번 - 20번";
 export const vocabularies = [
     { vocabulary: 'review', meaning: 'n.제조사, 비평<br/> v.재조사하다, 검토하다' },
     { vocabulary: 'subject', meaning: 'adv. 영향을 받기 쉬운<br/>v.받게 하다<br/>n.주제,제목,실험 대상' },
