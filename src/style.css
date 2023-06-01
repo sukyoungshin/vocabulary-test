@@ -27,7 +27,7 @@
     --full-width: 100%;
     --height: 32px;
     --minimal-width: 50px;
-    --height-font: 22px;
+    --line-height: 28px;
   
     /* font-weight */
     --bolder: 600;
@@ -70,12 +70,12 @@
     font-size: var(--font-large);
   }
   .test-title p {
-    line-height: var(--height-font);
-    height: var(--height-font);
+    line-height: var(--line-height);
+    height: var(--line-height);
     font-size: var(--font-normal);
   }
   .test-score {
-    column-count: 2;
+    display: none;
   }
   
   .test-wrapper {
@@ -128,6 +128,18 @@
   @page {
     margin: 0 60px;
   }
+  .test-score {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .test-score p:not(:last-child) {
+    width: 50%;
+  }
+  .test-score p:last-child {
+    width: 100%;
+  }
+  
   footer {
     display: none;
   }

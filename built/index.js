@@ -1,6 +1,7 @@
-import { vocabularies } from "./data.js";
+import { vocabularies, vocabulariesTestRange } from "./data.js";
 const init = () => {
-    getVocabularyArray();
+    updateVocabularyRange();
+    updateVocabulary();
     handlePrint();
     handleSort();
     handleAnswer();
@@ -8,10 +9,11 @@ const init = () => {
 window.addEventListener("load", init);
 const getHTMLElement = () => {
     const $testWrapper = document.querySelector(".test-wrapper");
+    const $testRangeWrapper = document.querySelector(".test-score");
     const $words = document.querySelectorAll('.table-cell:nth-child(2n)');
     const $meaning = document.querySelectorAll('.table-cell:nth-child(3n)');
     const $button = document.querySelectorAll("button");
-    return { $testWrapper, $button, $words, $meaning };
+    return { $testWrapper, $testRangeWrapper, $button, $words, $meaning };
 };
 /** vocabulary */
 const getVocabularyData = (sort) => {
@@ -24,9 +26,9 @@ const getVocabularyData = (sort) => {
     }
     return vocabularyData;
 };
-const getVocabularyArray = (sort) => {
+const updateVocabulary = (sort) => {
     const vocabularyData = getVocabularyData(sort);
-    getVocabularyItem(vocabularyData);
+    getVocabulary(vocabularyData);
 };
 const getDailyVocabularyData = () => {
     return vocabularies
@@ -56,7 +58,15 @@ const createTitleElement = ($testWrapper) => {
     $testTitle.append($meaning);
     $testWrapper.append($testTitle);
 };
-const getVocabularyItem = (vocabularies) => {
+const updateVocabularyRange = () => {
+    const { $testRangeWrapper } = getHTMLElement();
+    if (!$testRangeWrapper)
+        return;
+    const $testRange = document.createElement("p");
+    $testRange.innerText = vocabulariesTestRange;
+    $testRangeWrapper.append($testRange);
+};
+const getVocabulary = (vocabularies) => {
     const { $testWrapper } = getHTMLElement();
     if (!$testWrapper)
         return;
@@ -122,7 +132,7 @@ const handleSort = () => {
         return;
     for (let i = 0; i < $button.length; i++) {
         if ($button[i].id === "acend" || $button[i].id === "desc" || $button[i].id === "origin") {
-            $button[i].addEventListener('click', () => getVocabularyArray($button[i].id));
+            $button[i].addEventListener('click', () => updateVocabulary($button[i].id));
         }
     }
 };
