@@ -8,9 +8,10 @@ const init = () => {
 window.addEventListener("load", init);
 const getHTMLElement = () => {
     const $testWrapper = document.querySelector(".test-wrapper");
-    const $answer = document.querySelectorAll('.table-cell:nth-child(3n)');
+    const $words = document.querySelectorAll('.table-cell:nth-child(2n)');
+    const $meaning = document.querySelectorAll('.table-cell:nth-child(3n)');
     const $button = document.querySelectorAll("button");
-    return { $testWrapper, $button, $answer };
+    return { $testWrapper, $button, $words, $meaning };
 };
 /** vocabulary */
 const getVocabularyData = (sort) => {
@@ -98,7 +99,7 @@ const getVocabularyItem = (vocabularies) => {
 const createTableCellElement = (key) => {
     const $element = document.createElement("div");
     $element.setAttribute("class", "table-cell");
-    $element.innerText = `${key}`;
+    $element.innerHTML = `${key}`;
     return $element;
 };
 /** event */
@@ -136,15 +137,27 @@ const handleAnswer = () => {
     }
 };
 const toggleAnswer = (id) => {
-    const { $answer } = getHTMLElement();
-    for (let i = 0; i < $answer.length; i++) {
+    const { $words, $meaning } = getHTMLElement();
+    const full = $meaning.length;
+    const half = $meaning.length / 2;
+    for (let i = 0; i < half; i++) {
         if (id === "show") {
-            $answer[i].classList.remove('hide');
-            $answer[i].classList.add('show');
+            $meaning[i].classList.remove('hide');
+            $meaning[i].classList.add('show');
         }
         else {
-            $answer[i].classList.remove('show');
-            $answer[i].classList.add('hide');
+            $meaning[i].classList.remove('show');
+            $meaning[i].classList.add('hide');
+        }
+    }
+    for (let i = half; i < full; i++) {
+        if (id === "show") {
+            $words[i].classList.remove('hide');
+            $words[i].classList.add('show');
+        }
+        else {
+            $words[i].classList.remove('show');
+            $words[i].classList.add('hide');
         }
     }
 };
