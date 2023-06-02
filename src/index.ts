@@ -4,8 +4,8 @@ import { VocabularyType } from "./type";
 const init = () => {
   updateVocabularyRange();
   updateVocabulary();
-  handlePrint();
   handleSort();
+  handlePrint();
   handleAnswer();
 }
 window.addEventListener("load", init);
@@ -16,8 +16,12 @@ const getHTMLElement = () => {
   const $words = document.querySelectorAll<HTMLDivElement>('.table-cell:nth-child(2n)');
   const $meaning = document.querySelectorAll<HTMLDivElement>('.table-cell:nth-child(3n)');
   const $button = document.querySelectorAll<HTMLButtonElement>("button");
+  const $select = document.querySelector<HTMLSelectElement>(".sorts");
+  // 동적으로 생성된 Elements
+  const $tableRow = document.querySelectorAll<Element>(".table-row");
+  const $checkbox = document.querySelectorAll<Element>("input[type='checkbox']");
 
-  return { $testWrapper, $testRangeWrapper, $button, $words, $meaning };
+  return { $testWrapper, $testRangeWrapper, $button, $select, $words, $meaning, $tableRow, $checkbox };
 }
 
 /** vocabulary */
@@ -35,7 +39,7 @@ const getVocabularyData = (sort?: string) => {
 const updateVocabulary = (sort?: string) => {
   const vocabularyData = getVocabularyData(sort);
   getVocabulary(vocabularyData);
-  handleToggle();
+  handleCheckboxToggle();
 };
 
 const getDailyVocabularyData = () => {
@@ -152,11 +156,11 @@ const createTableCellElement = (key: number | string) => {
 };
 
 /** event */
-const handleToggle = () => {
-  const $tableRow = document.querySelectorAll<Element>(".table-row");
-  const $selected = document.querySelectorAll<Element>("input[type='checkbox']");
-  for (let i = 0; i < $selected.length; i++) {
-    $selected[i].addEventListener('click', () => {
+const handleCheckboxToggle = () => {
+  const { $tableRow, $checkbox } = getHTMLElement();
+
+  for (let i = 0; i < $checkbox.length; i++) {
+    $checkbox[i].addEventListener('click', () => {
       const index = i + 1;
       const isChecked = $tableRow[index].classList.value.includes('done');
 
@@ -184,14 +188,10 @@ const print = () => {
 };
 
 const handleSort = () => {
-  const { $button, $testWrapper } = getHTMLElement();
-  if (!$button || !$testWrapper) return;
+  const { $select } = getHTMLElement();
+  if (!$select) return;
 
-  for (let i = 0; i < $button.length; i++) {
-    if ($button[i].id === "acend" || $button[i].id === "desc" || $button[i].id === "origin") {
-      $button[i].addEventListener('click', () => updateVocabulary($button[i].id));
-    }
-  }
+  $select.addEventListener('change', () => updateVocabulary($select.value));
 }
 
 const handleAnswer = () => {

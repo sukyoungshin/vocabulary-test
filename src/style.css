@@ -58,6 +58,7 @@
 
 @media screen, print {
   .wrapper {
+    position: relative;
     margin-inline: auto;
     width: 1000px;
   }
@@ -118,14 +119,29 @@
     visibility: visible;
   }
 
+  aside {
+    position: absolute;
+    top: 50px;
+    right: -200px;
+    width: 150px;
+    height: 100%;    
+  }
+  aside.right {
+    right: -200px;
+  }
   menu {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: var(--spacing-2);
   }
 
   menu button {
+    width: 100%;
     padding: var(--spacing-1) var(--spacing-2);
+  }
+  menu select {
+    width: 100%;
   }
 }
 
@@ -164,7 +180,7 @@
     color: var(--primary);
   }
   
-  footer {
+  aside {
     display: none;
   }
 }
