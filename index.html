@@ -18,28 +18,27 @@
         </div>
       </header>
       <section class="test-wrapper"></section>
-      <footer>
+      <aside class="right">
         <menu>
+          <li><strong>문제 순서섞기</strong></li>
           <li>
-            <button type="button" id="print">인쇄하기</button>
+            <select class="sorts">
+              <option value="origin" id="origin">기본 정렬</option>
+              <option value="acend" id="acend">오름차순 정렬</option>
+              <option value="desc" id="desc">내림차순 정렬</option>
+            </select>
           </li>
-          <li>
-            <button type="button" id="origin">기본정렬</button>
-          </li>
-          <li>
-            <button type="button" id="acend">오름차순 정렬</button>
-          </li>
-          <li>
-            <button type="button" id="desc">내림차순 정렬</button>
-          </li>
-          <li>
-            <button type="button" id="show">답지보기</button>
-          </li>
-          <li>
-            <button type="button" id="hide">답지숨기기</button>
-          </li>
+          <li></li>
+          <li><strong>문제지 인쇄하기</strong></li>
+          <li><button type="button" id="hide">답지숨기기</button></li>
+          <li><button type="button" id="print">인쇄하기</button></li>
+          <li></li>
+          <li><strong>답안지 인쇄하기</strong></li>
+          <li><button type="button" id="show">답지보기</button></li>
+          <li><button type="button" id="print">인쇄하기</button></li>
+          <li></li>
         </menu>
-      </footer>
+      </aside>
     </div>
   </body>
 </html>
