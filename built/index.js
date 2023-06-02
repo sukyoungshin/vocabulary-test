@@ -2,8 +2,8 @@ import { vocabularies, vocabulariesTestRange } from "./data.js";
 const init = () => {
     updateVocabularyRange();
     updateVocabulary();
-    handlePrint();
     handleSort();
+    handlePrint();
     handleAnswer();
 };
 window.addEventListener("load", init);
@@ -13,7 +13,11 @@ const getHTMLElement = () => {
     const $words = document.querySelectorAll('.table-cell:nth-child(2n)');
     const $meaning = document.querySelectorAll('.table-cell:nth-child(3n)');
     const $button = document.querySelectorAll("button");
-    return { $testWrapper, $testRangeWrapper, $button, $words, $meaning };
+    const $select = document.querySelector(".sorts");
+    // 동적으로 생성된 Elements
+    const $tableRow = document.querySelectorAll(".table-row");
+    const $checkbox = document.querySelectorAll("input[type='checkbox']");
+    return { $testWrapper, $testRangeWrapper, $button, $select, $words, $meaning, $tableRow, $checkbox };
 };
 /** vocabulary */
 const getVocabularyData = (sort) => {
@@ -29,7 +33,7 @@ const getVocabularyData = (sort) => {
 const updateVocabulary = (sort) => {
     const vocabularyData = getVocabularyData(sort);
     getVocabulary(vocabularyData);
-    handleToggle();
+    handleCheckboxToggle();
 };
 const getDailyVocabularyData = () => {
     return vocabularies
@@ -120,11 +124,10 @@ const createTableCellElement = (key) => {
     return $element;
 };
 /** event */
-const handleToggle = () => {
-    const $tableRow = document.querySelectorAll(".table-row");
-    const $selected = document.querySelectorAll("input[type='checkbox']");
-    for (let i = 0; i < $selected.length; i++) {
-        $selected[i].addEventListener('click', () => {
+const handleCheckboxToggle = () => {
+    const { $tableRow, $checkbox } = getHTMLElement();
+    for (let i = 0; i < $checkbox.length; i++) {
+        $checkbox[i].addEventListener('click', () => {
             const index = i + 1;
             const isChecked = $tableRow[index].classList.value.includes('done');
             if (isChecked) {
@@ -150,14 +153,10 @@ const print = () => {
     return window.print();
 };
 const handleSort = () => {
-    const { $button, $testWrapper } = getHTMLElement();
-    if (!$button || !$testWrapper)
+    const { $select } = getHTMLElement();
+    if (!$select)
         return;
-    for (let i = 0; i < $button.length; i++) {
-        if ($button[i].id === "acend" || $button[i].id === "desc" || $button[i].id === "origin") {
-            $button[i].addEventListener('click', () => updateVocabulary($button[i].id));
-        }
-    }
+    $select.addEventListener('change', () => updateVocabulary($select.value));
 };
 const handleAnswer = () => {
     const { $button } = getHTMLElement();
