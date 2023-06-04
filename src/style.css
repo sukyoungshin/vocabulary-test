@@ -33,6 +33,7 @@
     --bolder: 600;
 
     /* font-size */
+    --font-small: 14px;
     --font-normal: 16px;
     --font-large: 24px;
   }
@@ -125,6 +126,10 @@
     right: -200px;
     width: 150px;
     height: 100%;    
+    font-size: var(--font-small);
+  }
+  aside.left {
+    left: -200px;
   }
   aside.right {
     right: -200px;
