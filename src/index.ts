@@ -1,7 +1,48 @@
 import { vocabularies, vocabulariesTestRange } from "./data.js";
 import { VocabularyType } from "./type";
 
+const holidays = [
+  "2023/01/01",// 신정
+  "2023/01/23",// 설날
+  "2023/01/24",// 설날
+  "2023/02/03", // 창립기념일
+  "2023/03/01", // 삼일절
+  "2023/05/05", // 어린이날
+  "2023/05/29",// 석가탄신일
+  "2023/06/05", // 현충일
+  "2023/08/15",// 광복절
+  "2023/09/28",// 추석
+  "2023/09/29",// 추석(연휴)
+  "2023/10/03",// 개천절
+  "2023/10/09",// 한글날
+  "2023/12/25",// 크리스마스
+] as const;
+
+const convertDateFormat = (date: Date) => {
+  return date.toLocaleDateString(); // 6/5/2023
+}
+
+const getTimeStamp = (day: string) => {
+  return new Date(day).getTime();
+}
+
+const isTodayHoliday = () => {
+  const today = convertDateFormat(new Date());
+  const holiday = holidays.filter(holiday => getTimeStamp(holiday) === getTimeStamp(today));
+
+  return holiday.length !== 0;
+};
+
 const init = () => {
+  const holidayYn = isTodayHoliday();
+  if (holidayYn) {
+    const { $testWrapper } = getHTMLElement();
+    if (!$testWrapper) return;
+
+    $testWrapper.innerHTML = '<div class="full"><p>🎉 오늘은 쉬는 날 🎉</p><p>(문제섞기X,인쇄X)</p></div>';
+    return;
+  }
+
   updateVocabularyRange();
   updateVocabulary();
   handleSort();
