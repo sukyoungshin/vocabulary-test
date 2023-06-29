@@ -6,7 +6,7 @@ export const vocabularies = [
   { vocabulary: 'mounting', meaning: 'adj.증가하는,오르는' },
   { vocabulary: 'halt', meaning: 'n.중단,정지<br/>v.정지시키다' },
   { vocabulary: 'reference', meaning: 'n.참조,참고,추천서' },
-  { vocabulary: 'realist', meaning: 'adj.현실적인' },
+  { vocabulary: 'realistic', meaning: 'adj.현실적인' },
   { vocabulary: 'elected', meaning: 'adj.선출된' },
   { vocabulary: 'worsen', meaning: 'v.악화시키다,악화디ㅗ다' },
   { vocabulary: 'translation', meaning: 'n.번역,해석' },
