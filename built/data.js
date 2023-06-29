@@ -8,7 +8,7 @@ export const vocabularies = [
     { vocabulary: 'reference', meaning: 'n.참조,참고,추천서' },
     { vocabulary: 'realistic', meaning: 'adj.현실적인' },
     { vocabulary: 'elected', meaning: 'adj.선출된' },
-    { vocabulary: 'worsen', meaning: 'v.악화시키다,악화디ㅗ다' },
+    { vocabulary: 'worsen', meaning: 'v.악화시키다,악화되다' },
     { vocabulary: 'translation', meaning: 'n.번역,해석' },
     { vocabulary: 'currency', meaning: 'n.화폐,통화,유통' },
     { vocabulary: 'annual', meaning: 'adj.매년의,해마다의' },
